@@ -7,7 +7,7 @@ before_install:
   - docker build -t ranjithjagadees/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run ranjithjagadees/react-test yarn test -- --coverage
+  - docker run -e CI=true ranjithjagadees/react-test yarn test
 
 after_success:
   - docker build -t ranjithjagadees/multi-client ./client
@@ -18,4 +18,4 @@ after_success:
   - docker push ranjithjagadees/multi-client
   - docker push ranjithjagadees/multi-nginx
   - docker push ranjithjagadees/multi-server
-  - docker push ranjithjagadees/multi-worker 
+  - docker push ranjithjagadees/multi-worker
